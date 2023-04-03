@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@font-face {
+    font-family: SFProDisplay;
+    src: url(./assets/fonts/SFProDisplay.OTF);
+}
+
+body {
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+:root {
+    --color-black: #1d1d1f;
+    --color-grey: #6e6e73;
+    --color-grey-light: #f5f5f7;
+    --color-blue: #0066cc;
+    --color-white: #ffffff;
+}
+
+button:active {
+    transform: scale(1.02);
+    transition: all 0.2s linear;
+}
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+p {
+    margin: 0;
+}
+body {
+    min-height: 100vh;
+    color: var(--color-black);
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    color: var(--color-blue);
+    &:hover {
+        text-decoration: underline;
+    }
+}
+strong {
+    font-weight: 600;
+}
+
+.title {
+    font-size: 48px;
+    max-width: 600px;
+    line-height: 1.08349;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+
+    span {
+        color: var(--color-grey);
+    }
+    &-small {
+        font-size: 24px;
+    }
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    min-width: 28px;
+    padding: 8px 16px;
+    border-radius: 980px;
+    background: #0071e3;
+    color: #fff;
+    border: 0;
+}
+
+.react-multi-carousel-dot-list {
+    bottom: 20px !important;
+}
+
+.react-multi-carousel-dot {
+    button {
+        border: none !important;
+        background-color: #cececf;
+        width: 8px !important;
+        height: 8px !important;
+    }
+    &--active {
+        button {
+            background-color: var(--color-black) !important;
+        }
+    }
+}

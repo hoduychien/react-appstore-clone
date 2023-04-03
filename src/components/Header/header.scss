@@ -1,0 +1,109 @@
+.header {
+    &-wrapper {
+        width: 100%;
+        background-color: var(--color-grey-light);
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 42px;
+        }
+        li {
+            cursor: pointer;
+        }
+    }
+    &-menu {
+        position: relative;
+        &-cart {
+            position: relative;
+            &::after {
+                content: attr(data-title);
+                position: absolute;
+                bottom: 8px;
+                right: -6px;
+                background-color: var(--color-black);
+                width: 14px;
+                height: 14px;
+                border-radius: 100px;
+                color: #fff;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &-item {
+            &:hover .header-menu-item-submenu {
+                opacity: 1;
+                visibility: visible;
+                transition: all 0.2s linear;
+            }
+
+            &-submenu {
+                position: absolute;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.1) 100px 40px 100px;
+                top: 100%;
+                left: 0;
+                z-index: 99999;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                padding: 20px 240px;
+                background-color: #fff;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.2s linear;
+            }
+        }
+    }
+
+    &-bag {
+        width: 100%;
+        &-title {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            h3 {
+                font-weight: 500;
+                font-size: 26px;
+            }
+        }
+        &-list {
+            padding: 10px;
+        }
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            img {
+                max-width: 60px;
+                max-height: 60px;
+            }
+            h3 {
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &-profile {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 10px;
+        margin-bottom: 40px;
+        span {
+            color: var(--color-grey);
+        }
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            a {
+                color: var(--color-black);
+                text-decoration: none;
+                font-weight: 500;
+            }
+        }
+    }
+}
