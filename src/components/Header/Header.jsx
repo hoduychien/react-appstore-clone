@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../../../src/assets/images/logo.svg';
 import search from '../../../src/assets/images/search-icon.svg';
 import cart from '../../../src/assets/images/cart-icon.svg';
@@ -53,6 +52,7 @@ const Header = () => {
                         <div className="header-menu-cart" data-title="1">
                             <img src={cart} alt="" />
                         </div>
+
                         <div className="header-menu-item-submenu">
                             <div className="header-bag">
                                 <div className="header-bag-title">

@@ -1,4 +1,3 @@
-import React from 'react';
 import './bag.scss';
 import bagIcon from '../../assets/images/bag-icon.svg';
 import boxIcon from '../../assets/images/box-icon.svg';

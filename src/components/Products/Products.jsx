@@ -1,9 +1,8 @@
-import React from 'react';
 import CarouselSlider from '../Carousel/CarouselSlider';
 import './products.scss';
 import { useNavigate } from 'react-router-dom';
 
-const Products = (props) => {
+const Products = () => {
     const naviagte = useNavigate();
     return (
         <section className="products">

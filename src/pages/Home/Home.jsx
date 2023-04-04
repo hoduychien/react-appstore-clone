@@ -20,7 +20,7 @@ const Home = () => {
                             <a href="/">Shop iPhone</a>
                         </p>
                     </div>
-                    <Hero title={['Store.', <span>The best way to buy the products you love.</span>]} />
+                    <Hero title="Store.The best way to buy the products you love." />
 
                     <div className="home-product-nav">
                         <div className="home-product-nav-item" onClick={() => handleOpenShop('mac')}>

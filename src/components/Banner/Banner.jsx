@@ -1,4 +1,3 @@
-import React from 'react';
 import './banner.scss';
 import CarouselSlider from '../Carousel/CarouselSlider';
 const Banner = () => {

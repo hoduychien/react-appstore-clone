@@ -1,4 +1,3 @@
-import React from 'react';
 import './productInfo.scss';
 import { Link } from 'react-router-dom';
 
