@@ -7,13 +7,17 @@ import userIcon from '../../assets/images/user-small-icon.svg';
 import settingIcon from '../../assets/images/setting-small-icon.svg';
 import bookMarkIcon from '../../assets/images/book-mark-small-icon.svg';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 const Header = () => {
+    const [isLoggedIn] = useState(false);
     return (
         <header>
             <div className="header-wrapper">
                 <ul className="header-menu">
                     <li>
-                        <img src={logo} alt="" />
+                        <Link to="/">
+                            <img src={logo} alt="" />
+                        </Link>
                     </li>
                     <li>
                         <p>Store</p>
@@ -84,10 +88,18 @@ const Header = () => {
                                     <img src={settingIcon} alt="" />
                                     <Link>Account</Link>
                                 </div>
-                                <div className="header-profile-item">
-                                    <img src={userIcon} alt="" />
-                                    <Link to="/sign-in">Sign In</Link>
-                                </div>
+
+                                {!isLoggedIn ? (
+                                    <div className="header-profile-item">
+                                        <img src={userIcon} alt="" />
+                                        <Link to="/sign-in">Sign In</Link>
+                                    </div>
+                                ) : (
+                                    <div className="header-profile-item">
+                                        <img src={userIcon} alt="" />
+                                        <button to="/sign-in">Sign Out</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </li>

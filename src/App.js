@@ -8,14 +8,20 @@ import SingIn from './pages/SignIn/SingIn';
 import Shop from './pages/Shop/Shop';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Bag from './pages/Bag/Bag';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SignUp from './pages/SignUp/SignUp';
+
 const App = () => {
     return (
         <React.Fragment>
+            <ToastContainer />
             <HashRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
                         <Route path="/sign-in" element={<SingIn />} />
+                        <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/shop/:type" element={<Shop />} />
                         <Route path="/shop/:type/:id" element={<ProductDetail />} />
                         <Route path="/shop/bag" element={<Bag />} />

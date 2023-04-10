@@ -4,19 +4,36 @@
     "homepage": "https://hoduychien.github.io/react-appstore-clone/",
     "private": true,
     "dependencies": {
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
+        "@mui/icons-material": "^5.11.16",
+        "@mui/material": "^5.11.16",
+        "@mui/styled-engine-sc": "^5.11.11",
+        "@mui/x-date-pickers": "^6.0.4",
+        "@reduxjs/toolkit": "^1.9.3",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
+        "axios": "^1.3.4",
         "flickity": "^3.0.0",
+        "formik": "^2.2.9",
         "node-sass": "^8.0.0",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
+        "react-datepicker": "^4.11.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.8.0",
         "react-multi-carousel": "^2.8.2",
+        "react-redux": "^8.0.5",
         "react-router-dom": "^6.9.0",
         "react-scripts": "5.0.1",
-        "web-vitals": "^2.1.4"
+        "react-select": "^5.7.2",
+        "react-toastify": "^9.1.2",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-saga": "^1.2.3",
+        "styled-components": "^5.3.9",
+        "web-vitals": "^2.1.4",
+        "yup": "^1.0.2"
     },
     "scripts": {
         "predeploy": "npm run build",
@@ -46,7 +63,6 @@
         ]
     },
     "devDependencies": {
-        "gh-pages": "^5.0.0",
         "eslint": "^8.34.0",
         "eslint-config-airbnb-typescript": "^17.0.0",
         "eslint-config-prettier": "^8.5.0",
@@ -58,6 +74,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "4.6.0",
-        "eslint-plugin-unused-imports": "^2.0.0"
+        "eslint-plugin-unused-imports": "^2.0.0",
+        "gh-pages": "^5.0.0"
     }
 }

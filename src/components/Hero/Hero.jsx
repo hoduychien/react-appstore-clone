@@ -7,7 +7,7 @@ const Hero = (state) => {
         <div>
             <div className="hero">
                 <div className="title">
-                    <h1>{state.title}</h1>
+                    <h1>Shop {state.title}</h1>
                 </div>
                 <div className="hero-right">
                     <div className="hero-right-item">
