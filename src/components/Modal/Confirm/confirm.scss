@@ -1,0 +1,49 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+}
+
+.confirm {
+    max-width: 350px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    z-index: 9;
+    border-radius: 8px;
+    &-header {
+        padding: 20px;
+        font-weight: 500;
+        font-size: 20px;
+        text-transform: capitalize;
+        text-align: center;
+    }
+    &-text {
+        text-align: center;
+        font-size: 14px;
+        padding: 0 20px;
+    }
+    &-action {
+        width: 100%;
+        margin-top: 20px;
+        border-top: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        &-button {
+            flex: 1;
+            background-color: transparent;
+            border: 0;
+            padding: 20px;
+            &:not(:last-child) {
+                border-right: 1px solid #ccc;
+            }
+            font-size: 14px;
+            color: var(--color-blue);
+            cursor: pointer;
+            font-weight: 600;
+        }
+    }
+}
+// .css-sox5kk-MuiBackdrop-root {
+//     background-color: transparent !important;
+// }

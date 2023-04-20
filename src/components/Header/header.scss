@@ -70,10 +70,28 @@
         }
         &-list {
             padding: 10px;
+            max-height: 180px;
+            margin-top: 20px;
+            overflow: hidden;
+            padding-bottom: 20px;
+
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+                display: none;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 100px;
+            }
         }
         &-item {
             display: flex;
             align-items: center;
+            padding: 10px;
             gap: 20px;
             img {
                 max-width: 60px;
@@ -99,10 +117,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 500;
             a {
                 color: var(--color-black);
                 text-decoration: none;
-                font-weight: 500;
             }
         }
     }

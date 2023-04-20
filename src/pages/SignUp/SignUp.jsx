@@ -3,7 +3,7 @@ import './signUp.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import formikValidate from '../../config/formikValidate';
+import { SignUpformikValidate } from '../../config/formikValidate';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
@@ -47,6 +47,7 @@ const SignUp = () => {
             birthday: '',
             password: '',
             confirmPassword: '',
+            image: '',
             country: '',
             phone: '',
             role: 'user',
@@ -66,7 +67,7 @@ const SignUp = () => {
             }
             return errors;
         },
-        validationSchema: formikValidate,
+        validationSchema: SignUpformikValidate,
         onSubmit: (values) => {
             const { firstName, lastName, email, birthday, password, confirmPassword, country, phone, role } = values;
             const data = {

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const formikValidate = Yup.object({
+const SignUpformikValidate = Yup.object({
     email: Yup.string().email('Invalid Email').required('You must fill in this section !'),
     password: Yup.string()
         .min(6, 'Password must be at least 6 characters !')
@@ -19,4 +19,12 @@ const formikValidate = Yup.object({
         .max(10, `Phone can't be more than 10 characters !`),
 });
 
-export default formikValidate;
+const SignInformikValidates = Yup.object({
+    email: Yup.string().email('Invalid Email').required('You must fill in this section !'),
+    password: Yup.string()
+        .min(6, 'Password must be at least 6 characters !')
+        .max(20, `Password can't be more than 20 characters !`)
+        .required('You must fill in this section !'),
+});
+
+export { SignUpformikValidate, SignInformikValidates };

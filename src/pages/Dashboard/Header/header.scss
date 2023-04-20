@@ -1,0 +1,60 @@
+.d-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    height: 60px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 99;
+    &-search {
+        display: flex;
+        align-items: center;
+        width: 270px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+        }
+        &-icon {
+            font-size: 18px !important;
+            color: var(--color-grey);
+        }
+    }
+    &-action {
+        display: flex;
+        align-items: center;
+        &-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &-user {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            gap: 10px;
+            margin-left: 10px;
+        }
+        &-icon {
+            font-size: 18px !important;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}

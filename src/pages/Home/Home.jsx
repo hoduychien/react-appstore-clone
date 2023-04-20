@@ -4,9 +4,15 @@ import './home.scss';
 import Banner from '../../components/Banner/Banner';
 import Hero from '../../components/Hero/Hero';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+
 const Home = () => {
+    const useReducer = useSelector((state) => state.useReducer);
+
     const navigate = useNavigate();
+
     const [categories, setCategories] = useState([]);
+
     const handleOpenShop = (item) => {
         navigate(`/shop/${item.tag}`, { state: item });
     };
@@ -20,6 +26,7 @@ const Home = () => {
     }, []);
     return (
         <React.Fragment>
+            {console.log(useReducer)}
             <section className="home">
                 <div className="home-wrapper">
                     <div className="home-header">

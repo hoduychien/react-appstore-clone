@@ -4,7 +4,13 @@ const useFormatTime = () => {
         return hour;
     };
 
-    return [getHour];
+    const getDate = (date) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const time = new Date(date).toLocaleDateString('en-US', options);
+        return time;
+    };
+
+    return [getHour, getDate];
 };
 
 export default useFormatTime;

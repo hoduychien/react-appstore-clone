@@ -13,6 +13,7 @@ import productService from '../../services/productServices';
 import { useFormik } from 'formik';
 import useCurrency from '../../hooks/useCurrency';
 import useFormatTime from '../../hooks/useFormatTime';
+import { useDispatch } from 'react-redux';
 
 const ProductDetail = () => {
     const { state } = useLocation();
@@ -25,15 +26,20 @@ const ProductDetail = () => {
 
     const [getHour] = useFormatTime();
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);
             const data = await productService.productDetails(state);
+
             formik.setValues({
+                cartId: data.id,
                 product: data.name,
-                color: data.colors[0].name,
+                color: JSON.stringify(data.colors[0]),
                 type: JSON.stringify(data.storage[0]),
                 date: Date.now(),
+                image: data.imageThumbnail,
             });
             setProduct(data);
             setLoading(false);
@@ -43,13 +49,23 @@ const ProductDetail = () => {
 
     const formik = useFormik({
         initialValues: {
+            id: '',
             product: '',
             color: '',
             type: '',
             date: Date.now(),
+            image: '',
         },
         onSubmit: async (values) => {
-            console.log(values);
+            const data = {
+                product: values.product,
+                color: JSON.parse(values.color).name,
+                type: JSON.parse(values.type),
+                image: JSON.parse(values.color).image,
+                cartId: values.cartId,
+                quantity: 1,
+            };
+            dispatch({ type: 'ADD_TO_CART', payload: data });
         },
     });
 
@@ -84,7 +100,7 @@ const ProductDetail = () => {
                                             <div className="title title-small">
                                                 Finish. <span>Pick your favorite.</span>
                                             </div>
-                                            <h4>Color - {formik.values.color}</h4>
+                                            <h4>Color - {JSON.parse(formik.values.color).name}</h4>
                                             <div className="product-content-color">
                                                 {product.colors.map((item, index) => {
                                                     return (
@@ -93,7 +109,7 @@ const ProductDetail = () => {
                                                                 type="radio"
                                                                 id={item.id}
                                                                 name="color"
-                                                                value={item.name}
+                                                                value={JSON.stringify(item)}
                                                                 onChange={formik.handleChange}
                                                                 defaultChecked={index === 0}
                                                             />
@@ -139,7 +155,7 @@ const ProductDetail = () => {
                                                 })}
                                             </div>
 
-                                            <div className="title title-small">
+                                            {/* <div className="title title-small">
                                                 Payment options. <span>Select the one that works for you.</span>
                                             </div>
                                             <div className="product-content-payment">
@@ -164,7 +180,7 @@ const ProductDetail = () => {
                                                         />
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -175,15 +191,12 @@ const ProductDetail = () => {
                                     <div className="product-result-title title title-small">
                                         Your new {formik.values.product}. <span>Just the way you want it.</span>
                                     </div>
-                                    <img
-                                        src="https://as-images.apple.com/is/iphone-14-blue-select-202209_AV2?wid=380&hei=220&fmt=p-jpg&qlt=95&.v=1660777201993"
-                                        alt=""
-                                    />
+                                    <img src={JSON.parse(formik.values.color).bagCover} alt="" />
                                 </div>
                                 <div className="product-result-center">
                                     <h3>
                                         {formik.values.product} {JSON.parse(formik.values.type).name}{' '}
-                                        {formik.values.color}
+                                        {JSON.parse(formik.values.color).name}
                                     </h3>
 
                                     <p>{formatCurrency(JSON.parse(formik.values.type).price)}</p>
@@ -224,7 +237,7 @@ const ProductDetail = () => {
                                 </div>
                             </div>
 
-                            <ProductInfo></ProductInfo>
+                            <ProductInfo box={JSON.parse(formik.values.color).box}></ProductInfo>
                         </div>
                     )}
                 </form>

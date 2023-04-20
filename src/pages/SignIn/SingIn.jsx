@@ -1,26 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './signIn.scss';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import formikValidate from '../../config/formikValidate';
+import { SignInformikValidates } from '../../config/formikValidate';
 import { useDispatch } from 'react-redux';
 import { ACTION_TYPES } from '../../constants/actionTypes';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
     const [isShowPassword, setIsShowPassword] = useState(false);
     const dispatch = useDispatch();
+    const useReducer = useSelector((state) => state.useReducer);
+
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
         },
-        validationSchema: formikValidate,
+        validationSchema: SignInformikValidates,
         onSubmit: (values) => {
             dispatch({ type: ACTION_TYPES.USER_LOGIN, payload: values });
+            navigate('/');
         },
     });
+    useEffect(() => {
+        if (useReducer.isLoggedIn) {
+            navigate(-1);
+        }
+    }, [useReducer.isLoggedIn]);
     return (
         <div>
             <div className="sign-in">

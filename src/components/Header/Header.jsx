@@ -6,10 +6,23 @@ import boxIcon from '../../assets/images/box-small-icon.svg';
 import userIcon from '../../assets/images/user-small-icon.svg';
 import settingIcon from '../../assets/images/setting-small-icon.svg';
 import bookMarkIcon from '../../assets/images/book-mark-small-icon.svg';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { ACTION_TYPES } from '../../constants/actionTypes';
+
 const Header = () => {
-    const [isLoggedIn] = useState(false);
+    const useReducer = useSelector((state) => state.useReducer);
+
+    const cartReducer = useSelector((state) => state.cartReducer);
+
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const hanldeSignOut = () => {
+        dispatch({ type: ACTION_TYPES.USER_LOGOUT });
+    };
     return (
         <header>
             <div className="header-wrapper">
@@ -53,7 +66,7 @@ const Header = () => {
                         <img src={search} alt="" />
                     </li>
                     <li className="header-menu-item">
-                        <div className="header-menu-cart" data-title="1">
+                        <div className="header-menu-cart" data-title={cartReducer.carts.length}>
                             <img src={cart} alt="" />
                         </div>
 
@@ -61,17 +74,31 @@ const Header = () => {
                             <div className="header-bag">
                                 <div className="header-bag-title">
                                     <h3>Bag</h3>
-                                    <button className="header-bag-button button">Review Bag</button>
+                                    <button className="header-bag-button button" onClick={() => navigate('/shop/bag')}>
+                                        Review Bag
+                                    </button>
                                 </div>
+
                                 <div className="header-bag-list">
-                                    <div className="header-bag-item">
-                                        <img
-                                            src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-select-202209?"
-                                            alt=""
-                                        />
-                                        <h3>iPhone 14 128GB Blue</h3>
-                                    </div>
+                                    {cartReducer &&
+                                        cartReducer.carts.map((cart) => {
+                                            return (
+                                                <div className="header-bag-item" key={cart.id}>
+                                                    <img src={cart.image} alt="" />
+                                                    <h3>
+                                                        {cart.product} {cart.color} {cart.type.name} x {cart.quantity}
+                                                    </h3>
+                                                </div>
+                                            );
+                                        })}
+
+                                    {console.log(cartReducer)}
                                 </div>
+                                <span>
+                                    {cartReducer.carts.length > 0
+                                        ? `There are ${cartReducer.carts.length} items in your bag`
+                                        : 'There are no items in your bag'}
+                                </span>
                             </div>
 
                             <div className="header-profile">
@@ -86,10 +113,10 @@ const Header = () => {
                                 </div>
                                 <div className="header-profile-item">
                                     <img src={settingIcon} alt="" />
-                                    <Link>Account</Link>
+                                    <Link to="/profile">Account</Link>
                                 </div>
 
-                                {!isLoggedIn ? (
+                                {!useReducer.isLoggedIn ? (
                                     <div className="header-profile-item">
                                         <img src={userIcon} alt="" />
                                         <Link to="/sign-in">Sign In</Link>
@@ -97,7 +124,7 @@ const Header = () => {
                                 ) : (
                                     <div className="header-profile-item">
                                         <img src={userIcon} alt="" />
-                                        <button to="/sign-in">Sign Out</button>
+                                        <div onClick={() => hanldeSignOut()}>Sign Out</div>
                                     </div>
                                 )}
                             </div>

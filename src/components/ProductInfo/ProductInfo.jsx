@@ -1,25 +1,21 @@
 import './productInfo.scss';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const ProductInfo = () => {
+const ProductInfo = (props) => {
     return (
         <div>
             <div className="product-param">
+                {console.log()}
                 <h3>What’s in the Box</h3>
                 <div className="product-box">
                     <div className="product-box-item">
-                        <span>iPhone 14</span>
-                        <img
-                            src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-blue-witb-202209?wid=172&hei=392&fmt=jpeg&qlt=95&.v=1660679135494"
-                            alt=""
-                        />
+                        <span>{props.box[0].name}</span>
+                        <img src={props.box[0].image} alt="" />
                     </div>
                     <div className="product-box-item">
-                        <span>USB-C to Lightning Cable</span>
-                        <img
-                            src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-cables-witb-202209?wid=92&hei=392&fmt=jpeg&qlt=95&.v=1660679135172"
-                            alt=""
-                        />
+                        <span>{props.box[1].name}</span>
+                        <img src={props.box[1].image} alt="" />
                     </div>
                 </div>
 
@@ -37,6 +33,10 @@ const ProductInfo = () => {
             </div>
         </div>
     );
+};
+
+ProductInfo.propTypes = {
+    box: PropTypes.array,
 };
 
 export default ProductInfo;
