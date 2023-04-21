@@ -10,8 +10,8 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!useReducer.isLoggedIn || useReducer.userInfo.role !== 'admin') {
-            navigate('/sing-in');
+        if (!useReducer.isLoggedIn && useReducer.userInfo.role !== 'admin') {
+            navigate('/');
         }
     }, []);
     return (

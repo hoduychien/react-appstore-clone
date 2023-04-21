@@ -8,18 +8,21 @@ function* signInRequest(action) {
         const user = action.payload;
         const response = yield axios.get(`http://localhost:8080/api/users`);
         const data = response.data.data;
-        if (data.find((data) => data.email === user.email && data.password === user.password)) {
+
+        const userfind = data.find((data) => data.email === user.email && data.password === user.password);
+
+        if (userfind) {
             yield put({
                 type: ACTION_TYPES.USER_LOGIN_SUCCESS,
                 payload: {
-                    id: data[0].id,
-                    firstName: data[0].firstName,
-                    lastName: data[0].lastName,
-                    phone: data[0].phone,
-                    email: data[0].email,
-                    image: data[0].image,
-                    address: data[0].address,
-                    role: data[0].role,
+                    id: userfind.id,
+                    firstName: userfind.firstName,
+                    lastName: userfind.lastName,
+                    phone: userfind.phone,
+                    email: userfind.email,
+                    image: userfind.image,
+                    address: userfind.address,
+                    role: userfind.role,
                 },
             });
         } else {

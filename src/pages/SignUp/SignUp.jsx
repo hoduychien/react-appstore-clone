@@ -11,7 +11,7 @@ const SignUp = () => {
     const [users, setUsers] = useState([]);
 
     const handleCreateUser = async (data) => {
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}users`, data);
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_API}/users`, data);
         if (response && response.status == 201) {
             toast.success('Create account success ~', {
                 position: 'bottom-right',

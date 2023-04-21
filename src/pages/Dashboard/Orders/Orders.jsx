@@ -4,25 +4,33 @@ import { useEffect, useState } from 'react';
 import './orders.scss';
 import useStatus from '../../../hooks/useStatus';
 import useFormatTime from '../../../hooks/useFormatTime';
+import OrderDetailModal from '../OrderDetail/OrderDetailModal';
 
 const Orders = () => {
     const [data, setData] = useState([]);
-    const [page, setPage] = useState();
-    const [currenPage, setCurrenPage] = useState(1);
-    const [getHour, getDate] = useFormatTime();
-    const [getStatus] = useStatus();
 
-    const getPageLength = async () => {
-        const res = await axios(`${process.env.REACT_APP_BACKEND_API}/orders`);
-        console.log(res.data.data.length);
-        if (res.data && res.data.data.length > 0) {
-            setPage(Math.ceil(res.data.data.length / 5));
-        }
-    };
-    getPageLength();
+    const [page, setPage] = useState();
+
+    const [currenPage, setCurrenPage] = useState(1);
+
+    const [isOpenEditModal, setIsOpenEditModal] = useState(false);
+
+    const [orderSelect, setOrderSelect] = useState();
+    const [getHour, getDate] = useFormatTime();
+
+    const [getStatus] = useStatus();
 
     const handleChangePage = (even, value) => {
         setCurrenPage(value);
+    };
+
+    const handleOpen = () => {
+        setIsOpenEditModal(!isOpenEditModal);
+    };
+
+    const handleOpenEditModal = (order) => {
+        setOrderSelect(order.id);
+        handleOpen();
     };
 
     useEffect(() => {
@@ -31,9 +39,21 @@ const Orders = () => {
             setData(res.data.data);
         };
         getDataTable();
+
+        const getPageLength = async () => {
+            const res = await axios(`${process.env.REACT_APP_BACKEND_API}/orders`);
+            if (res.data && res.data.data.length > 0) {
+                setPage(Math.ceil(res.data.data.length / 5));
+            }
+        };
+
+        getPageLength();
     }, [currenPage]);
     return (
         <div className="table">
+            {isOpenEditModal && (
+                <OrderDetailModal isopen={isOpenEditModal} handleOpen={handleOpen} orderId={orderSelect} />
+            )}
             <div className="table-header">
                 <div className="table-title">
                     <h3>Orders</h3>
@@ -55,7 +75,6 @@ const Orders = () => {
                     </tr>
                 </thead>
 
-                {console.log(data)}
                 {data.map((item) => {
                     return (
                         <tbody key={item.id}>
@@ -72,7 +91,12 @@ const Orders = () => {
                                 </td>
                                 <td>{item.total}</td>
                                 <td>
-                                    <button className="table-button table-button-view">View</button>
+                                    <button
+                                        onClick={() => handleOpenEditModal(item)}
+                                        className="table-button table-button-view"
+                                    >
+                                        View
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
